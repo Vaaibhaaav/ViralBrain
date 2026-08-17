@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+langgraph
+langchain-core
+langchain-groq
+google-generativeai
+pydantic
+python-dotenv
+langchain_community
+tavily-python
+apify-client
+yt-dlp
+youtube-transcript-api
+qdrant-client
+langchain_google_genai_
