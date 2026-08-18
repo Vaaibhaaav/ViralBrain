@@ -1,6 +1,6 @@
 from langchain_core.messages import HumanMessage
 from server.utils.ai_client import groq_client
-from server.utils.embeddings.py import get_creator_style_examples
+from server.utils.embeddings import get_creator_style_examples
 
 from server.utils.embeddings import TOP_N_AFTER_RERANK
 

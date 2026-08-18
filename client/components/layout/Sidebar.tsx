@@ -31,7 +31,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
   const { userProfile, packs } = useContentStore();
   const { open: openChat } = useChatStore();
   const { user } = useUserStore();
-  console.log("LAVDYAM NA BHOJYAM" , user)
   const pendingReviewCount = packs.filter((p) => p.status === "review").length;
 
   const mainNav = [

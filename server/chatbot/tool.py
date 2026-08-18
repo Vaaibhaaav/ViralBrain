@@ -2,9 +2,9 @@ from typing import Literal
 
 from langchain_core.messages import SystemMessage, HumanMessage
 
-from chatbot.creator_style_desc import get_creator_style
-from utils.ai_client import gemini_client
-from utils.ai_client import tavily_client
+from server.chatbot.creator_style_desc import get_creator_style
+from server.utils.ai_client import gemini_client
+from server.utils.ai_client import tavily_client
 
 Intent = Literal[
     "general_chat",

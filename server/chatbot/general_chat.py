@@ -5,8 +5,8 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 from server.chatbot.memory_prompt import load_thread_memory, save_thread_memory
 
-from chatbot.creator_style_desc import get_creator_style
-from utils.ai_client import groq_client
+from server.chatbot.creator_style_desc import get_creator_style
+from server.utils.ai_client import groq_client
 
 KEEP_VERBATIM = 5
 
@@ -113,16 +113,12 @@ async def generate_content_chat(
     try:
         state = await load_thread_memory(thread_id)
 
-        # Fetch style using the actual user request as the topic, so
-        # retrieval is relevant to *this* request, not a generic default.
         creator_style_text = await get_creator_style(
             creator_id=creator_id,
             niche=niche,
             current_topic=user_message,
         )
 
-        # Prepend style context for THIS call only — don't mutate the
-        # message that gets stored in history.
         prompted_message = (
             f"Here is my preferred style for scripts and other content:\n"
             f"{creator_style_text}\n\n"
@@ -133,7 +129,6 @@ async def generate_content_chat(
         response = await groq_client.ainvoke(messages)
         reply_text = response.content
 
-        # Store the ORIGINAL user message, not the style-prefixed one.
         state = await append_message_and_maybe_summarize(state, {"role": "user", "content": user_message})
         state = await append_message_and_maybe_summarize(state, {"role": "assistant", "content": reply_text})
 

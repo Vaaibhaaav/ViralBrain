@@ -126,6 +126,11 @@ export interface ChatMessage {
   content: string;
   created_at: string;
   type: 'text' | 'action_card' | 'pack_preview' | 'score_comparison';
+  client_message_id?: string;
+  intent?: string;
+  grounded?: boolean;
+  guardrail_flags?: string[];
+  isProcessing?: boolean;
   action?: {
     label: string;
     href?: string;
@@ -139,4 +144,29 @@ export interface ChatContext {
   active_pack_topic?: string;
   active_pack_score?: number;
   agent_status?: AgentStatus[];
+}
+
+export interface ChatbotMessagePayload {
+  thread_id: string;
+  creator_id: string;
+  client_message_id?: string | null;
+  user_message: string;
+  metadata?: Record<string, any> | null;
+  niche?: string | null;
+}
+
+export interface ChatbotMessageResponse {
+  thread_id: string;
+  reply: string;
+  intent?: string | null;
+  grounded?: boolean | null;
+  guardrail_flags: string[];
+}
+
+export interface PreviousChats {
+  thread_id: string;
+  creator_id: string;
+  summary: string;
+  recent_messages: string[],
+  total_message_count: number
 }
