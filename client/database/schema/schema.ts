@@ -174,3 +174,24 @@ export const productionAssets = pgTable(
         ),
     ]
 );
+
+export const chatMemory = pgTable("chat_memory", {
+    thread_id: text("thread_id").primaryKey(),
+
+    creator_id: text("creator_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+
+    summary: text("summary").default(""),
+
+    recent_messages: jsonb("recent_messages").default([]).$type<unknown[]>(),
+
+    updated_at: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+
+    total_message_count: integer("total_message_count").notNull().default(0),
+
+    next_summary_threshold: integer("next_summary_threshold").notNull().default(20),
+})
+
+export type ChatMemoryRow = typeof chatMemory.$inferSelect
+export type NewChatMemoryRow = typeof chatMemory.$inferInsert

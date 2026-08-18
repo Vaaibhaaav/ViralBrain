@@ -1,6 +1,6 @@
 import json
 
-from server.utils.db import get_pool
+from server.utils.database import get_pool
 
 DEFAULT_STATE = {
     "summary": "",

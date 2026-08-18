@@ -3,8 +3,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from tavily import TavilyClient
 from server.config import GROQ_MODEL_NAME, GROQ_API_KEY, GEMINI_MODEL_NAME, GOOGLE_API_KEY
-
-from config import TAVILY_API_KEY
+from server.config import TAVILY_API_KEY
 
 load_dotenv()
 
@@ -16,7 +15,7 @@ groq_client = ChatGroq(
     api_key=GROQ_API_KEY,
     timeout=30,
     max_retries=2,
-    max_tokens=500
+    max_tokens=7000
 )
 
 gemini_client = ChatGoogleGenerativeAI(
