@@ -193,5 +193,7 @@ export const chatMemory = pgTable("chat_memory", {
     next_summary_threshold: integer("next_summary_threshold").notNull().default(20),
 })
 
+export type CreatorProfileRow = typeof creatorProfiles.$inferSelect
+export type NewCreatorProfileRow = typeof creatorProfiles.$inferInsert
 export type ChatMemoryRow = typeof chatMemory.$inferSelect
 export type NewChatMemoryRow = typeof chatMemory.$inferInsert

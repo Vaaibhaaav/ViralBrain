@@ -23,19 +23,21 @@ interface UserStore {
 export const useUserStore = create<UserStore>()(persist(
     (set, get) => ({
         user: null,
-        setUser: (user) => set({ user: {
-            ...user,
-            // fallback defaults matching MOCK_USER style
-            packs_created: user?.packs_created ?? 0,
-            voice_vectors: user?.voice_vectors ?? 3840,
-            approval_rate: user?.approval_rate ?? 100,
-            connected_platforms: user?.connected_platforms ?? ["youtube", "tiktok", "instagram", "twitter", "linkedin"]
-        } }),
+        setUser: (user) => set({
+            user: {
+                ...user,
+                // fallback defaults matching MOCK_USER style
+                packs_created: user?.packs_created ?? 0,
+                voice_vectors: user?.voice_vectors ?? 3840,
+                approval_rate: user?.approval_rate ?? 100,
+                connected_platforms: user?.connected_platforms ?? ["youtube", "tiktok", "instagram", "twitter", "linkedin"]
+            }
+        }),
         removeUser: () => set({ user: null }),
         updateCreatorProfile: async (profileData) => {
             const currentUser = get().user;
             if (!currentUser || !currentUser.id) return;
-            
+
             try {
                 const res = await createCreatorProfile(currentUser.id, profileData);
                 if (res.success && res.data) {
