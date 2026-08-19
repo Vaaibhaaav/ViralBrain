@@ -59,7 +59,7 @@ export const IdeaInput: React.FC = () => {
   const handleGenerate = async () => {
     // if (topic.length < 20) return;
 
-    if(isGenerating)return;
+    if (isGenerating) return;
 
     // Route first so user sees progress screen immediately
     router.push("/generate");
@@ -239,8 +239,8 @@ export const IdeaInput: React.FC = () => {
                     type="button"
                     onClick={() => togglePlatform(p.id)}
                     className={`px-3 py-1 text-xs rounded-pill border-[0.5px] font-medium tracking-wide transition-all ${isSelected
-                        ? "bg-sage border-sage-deep text-sage-deep font-semibold"
-                        : "bg-white border-sand/40 text-ink-light hover:bg-blush"
+                      ? "bg-sage border-sage-deep text-sage-deep font-semibold"
+                      : "bg-white border-sand/40 text-ink-light hover:bg-blush"
                       }`}
                   >
                     {p.label} {isSelected ? "✓" : ""}
@@ -254,7 +254,7 @@ export const IdeaInput: React.FC = () => {
           <div className="flex items-end justify-end">
             <Button
               onClick={handleGenerate}
-              disabled = {isGenerating}
+              disabled={isGenerating}
               className="px-6 h-[46px] rounded-md flex items-center gap-2 group"
             >
               <Sparkles className="h-4 w-4 animate-pulse-subtle group-hover:rotate-12 transition-transform" />
